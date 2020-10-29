@@ -7,10 +7,12 @@ public class Player : MonoBehaviour
     public Transform movePoint;
     public LayerMask whatStopsMovement;
     public bool movePossible = false;
+    [SerializeField] Vector3 initialPosition;
     // Start is called before the first frame update
     void Start()
     {
         movePoint.parent = null;
+        initialPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
         if(!movePossible && !GameState.Instance.isGameOver)
         {
             Movement();
+            ResetPlayers();
         } 
     }
 
@@ -62,6 +65,15 @@ public class Player : MonoBehaviour
         if(other.gameObject.name == "PlayerGoal" || other.gameObject.name == "ShadowGoal")
         {
             movePossible = true;
+        }
+    }
+
+    void ResetPlayers()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = initialPosition;
+            movePoint.position = initialPosition;
         }
     }
     

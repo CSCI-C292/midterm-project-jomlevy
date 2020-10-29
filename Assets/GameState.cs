@@ -6,6 +6,7 @@ public class GameState : MonoBehaviour
 {
     public bool isGameOver = false;
     int _goalsHit = 0;
+    int _score = 0;
 
     public static GameState Instance;
     // Start is called before the first frame update
@@ -31,5 +32,11 @@ public class GameState : MonoBehaviour
     public void IncrementGoalsHit()
     {
         _goalsHit += 1;
+    }
+
+    public void GemCollected()
+    {
+        _score += 10;
+        Debug.Log(_score);
     }
 }
