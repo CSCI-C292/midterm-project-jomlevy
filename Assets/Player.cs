@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
         if(!movePossible && !GameState.Instance.isGameOver)
         {
             Movement();
-            ResetPlayers();
+            //ResetPlayers();
         } 
     }
 

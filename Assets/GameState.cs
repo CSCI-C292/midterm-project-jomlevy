@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
     public bool isGameOver = false;
     int _goalsHit = 0;
     int _score = 0;
+    [SerializeField] GameObject _scoreText;
+    [SerializeField] GameObject _gameOverText;
+    [SerializeField] GameObject _winText;
 
     public static GameState Instance;
     // Start is called before the first frame update
@@ -21,12 +26,14 @@ public class GameState : MonoBehaviour
         if(_goalsHit == 2)
         {
             isGameOver = true;
+            _winText.SetActive(true);
         }
     }
 
     public void InitiateGameOver()
     {
         isGameOver = true;
+        _gameOverText.SetActive(true);
     }
 
     public void IncrementGoalsHit()
@@ -37,6 +44,6 @@ public class GameState : MonoBehaviour
     public void GemCollected()
     {
         _score += 10;
-        Debug.Log(_score);
+        _scoreText.GetComponent<Text>().text = "Score: " + _score;
     }
 }
