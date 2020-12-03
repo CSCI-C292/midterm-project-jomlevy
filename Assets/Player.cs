@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -21,8 +22,9 @@ public class Player : MonoBehaviour
         if(!movePossible && !GameState.Instance.isGameOver)
         {
             Movement();
-            //ResetPlayers();
         } 
+
+        ResetPlayers();
     }
 
     void Movement()
@@ -72,8 +74,7 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R))
         {
-            transform.position = initialPosition;
-            movePoint.position = initialPosition;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
     
