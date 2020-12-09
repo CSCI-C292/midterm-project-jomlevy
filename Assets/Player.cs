@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!movePossible && !GameState.Instance.isGameOver)
+        if(!movePossible && !GameState.Instance.isGameOver && Time.timeScale == 1)
         {
             Movement();
         } 
@@ -74,8 +74,8 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R))
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
-    
 }

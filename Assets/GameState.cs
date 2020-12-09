@@ -12,6 +12,8 @@ public class GameState : MonoBehaviour
     [SerializeField] GameObject _scoreText;
     [SerializeField] GameObject _gameOverText;
     [SerializeField] GameObject _winText;
+    [SerializeField] GameObject _nextLevelButton;
+    [SerializeField] GameObject _optionsMenu;
 
     public static GameState Instance;
     // Start is called before the first frame update
@@ -27,7 +29,9 @@ public class GameState : MonoBehaviour
         {
             isGameOver = true;
             _winText.SetActive(true);
+            _nextLevelButton.SetActive(true);
         }
+        OptionsMenu();
     }
 
     public void InitiateGameOver()
@@ -45,5 +49,21 @@ public class GameState : MonoBehaviour
     {
         _score += 10;
         _scoreText.GetComponent<Text>().text = "Score: " + _score;
+    }
+
+    public void OptionsMenu()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(_optionsMenu.activeSelf == true)
+            {
+                Time.timeScale = 1;
+                _optionsMenu.SetActive(false);
+            } else
+            {
+                Time.timeScale = 0;
+                _optionsMenu.SetActive(true);
+            }
+        }
     }
 }
